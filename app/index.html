@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="nukernTestApp">
 <head>
-<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="bower_components/angular/angular.js" type="text/javascript"></script>
-<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js" type="text/javascript"></script>
-<script src="js/app.js" type="text/javascript"></script>
-<script src="js/userController.js" type="text/javascript"></script>
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/main.css">
+	<script src="bower_components/angular/angular.js" type="text/javascript"></script>
+	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+	<script src="js/app.js" type="text/javascript"></script>
+	<script src="js/userController.js" type="text/javascript"></script>
 </head>
 <body class="container">
 	<div ng-controller="UserCtrl" class="table-wrapper">
@@ -15,10 +16,10 @@
 				<th>Client Name</th>
 				<th>Email</th>
 			</tr>
-			<tr ng-repeat="(key, item) in users">
-				<td><a ng-click="userModal(key)" class="tableId">{{ key }}</a></td>
-				<td>{{ item.first_name  + " " + item.last_name }}</td>
-				<td>{{ item.email }}</td>
+			<tr ng-repeat="(key, user) in users">
+				<td><a ng-click="userModalClick(key)" class="tableId">{{ key }}</a></td>
+				<td>{{ user.first_name  + " " + user.last_name }}</td>
+				<td>{{ user.email }}</td>
 			</tr>
 		</table>
 	</div>
