@@ -42,6 +42,8 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 
 
 		$scope.id = id;
+
+		//Gets a single client's data or errors out
 		$http({
 			method: 'GET',
 			//"http://nukern-test.herokuapp.com/api/clients" + id
@@ -56,9 +58,25 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 			}
 		);
 
-		//retuns new user data from form
+		//returns edited user data from modal form and posts it
 		$scope.ok = function() {
 			uibModalInstance.close($scope.user);
+			$scope.user = uibModalInstance.result;
+
+			//Posts data
+			$http({
+				method: "POST",
+				url: "clients" + $scope.id + '.json',
+				data: $scope.user
+			})
+			.then(
+				function(){
+
+				},
+				function(){
+
+				}
+			);
 
 		};
 

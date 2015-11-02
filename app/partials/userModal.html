@@ -1,8 +1,20 @@
 <div class="modal-header">
 	<div class="modal-title">{{user.first_name}} {{user.last_name}}</div>
 </div>
-<div class="modal-body"></div>
+<div class="modal-body">
+	<form>
+		<div>
+			<div>First Name:</div><input type="text" name="fname" placeholder="{{ user.first_name }}">
+		</div>
+		<div>
+			<div>Last Name:</div><input type="text" name="lname" placeholder="{{ user.last_name }}">
+		</div>
+		<div>
+			<div>Email:</div><input type="email" name="email" placeholder="{{ user.email }}">
+		</div>
+	</form>
+</div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="cancel()">OK</button>
+    <button class="btn btn-primary" ng-click="ok()">Save</button>
     <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
 </div>
