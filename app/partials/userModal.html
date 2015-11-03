@@ -1,6 +1,7 @@
 <div class="modal-header">
 	<div class="modal-title">{{user.first_name}} {{user.last_name}}</div>
 </div>
+<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 <div class="modal-body">
 	<form>
 		<div>

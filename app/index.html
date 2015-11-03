@@ -12,6 +12,7 @@
 <body class="container">
 	<h3>Clients</h3>
 	<div ng-controller="UserCtrl">
+		<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
 		<div class="table-wrapper">
 			<table class="table table-responsive table-striped">
 				<tr>
@@ -26,8 +27,6 @@
 				</tr>
 			</table>
 		</div>
-	</div>
-	<div ng-controller="NewUserCtrl">
 		<button class="btn btn-default" ng-click="newUserModalClick()">Create New User</button>
 	</div>
 </body>

@@ -5,6 +5,15 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 
 	function($http, $scope, $uibModal){
 
+		//Alerts
+		$scope.alerts = [];
+
+
+		//Close the alert
+		$scope.closeAlert = function(index) {
+    		$scope.alerts.splice(index, 1);
+  		};
+
 		//get single user info
 		$http({
 			method: 'GET',
@@ -14,7 +23,7 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 			$scope.users = data.data;
 		}, 
 		function(){
-			alert("could not connect");
+			$scope.alerts.push({type:'danger', msg: 'Could Not Connect'});
 		});
 
 		//create Modal to edit single user
@@ -32,7 +41,13 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 					}
 				}
 			});
+
+			//Gets results from Modal to return alert messages
+			modalInstance.result.then(function(alerts){
+				$scope.alerts.push(alerts[0]);
+			});
 		}
+
 
 		//create Modal to add single user
 		$scope.newUserModalClick = function() {
@@ -44,7 +59,13 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 				size: "lg"
 			});
 
+			//Gets results from Modal to return alert messages
+			modalInstance.result.then(function(alerts){
+				$scope.alerts.push(alerts[0]);
+			});
 		}
+
+
 		
 	}]);
 
@@ -52,13 +73,15 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$scope', '$uibModalInstance', 'id',
 	function($http, $scope, $uibModalInstance, id){
 
-
+		//Save the id to scope
 		$scope.id = id;
+
+		//Alerts
+		$scope.alerts = [];
 
 		//Gets a single client's data or errors out
 		$http({
 			method: 'GET',
-			//"http://nukern-test.herokuapp.com/api/clients" + id
 			url: 'clients' + $scope.id + '.json'
 		})
 		.then(function(data){
@@ -66,15 +89,14 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 				console.log($scope.user);
 			},
 			function(){
-				alert("NOOO");
+				$scope.alerts.push({type:'danger', msg: 'Could Not Connect'});
 			}
 		);
 
 		$scope.ok = function() {
 
-			$uibModalInstance.close();
 
-			//Posts data
+			//PUTS data
 			$http({
 				method: "PUT",
 				url: "http://nukern-test.herokuapp.com/api/clients/" + $scope.id,
@@ -82,8 +104,12 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 			})
 			.then(
 				function(){
+					$scope.alerts.push({type:'success', msg: 'Edits Saved'});
+					$uibModalInstance.close($scope.alerts);
 				},
 				function(){
+					$scope.alerts.push({type:'danger', msg: 'Edits Not Saved'});
+					$uibModalInstance.close($scope.alerts);
 				}
 			);
 
@@ -98,26 +124,6 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 	}]);
 
 
-/* Add User Controller */
-
-angular.module("nukernUserController")
-.controller("NewUserCtrl" ,['$http', '$scope', '$uibModal',
-
-	function($http, $scope, $uibModal){
-
-		//create Modal to add single user
-		$scope.newUserModalClick = function() {
-
-			var modalInstance = $uibModal.open({
-
-				templateUrl:"partials/newUserModal.html",
-				controller: "AddModalUserCtrl",
-				size: "lg"
-			});
-
-		}
-		
-	}]);
 
 
 /*Controller to add a  user modal */
@@ -126,10 +132,10 @@ angular.module("nukernUserController").controller("AddModalUserCtrl", [ '$http',
 	function($http, $scope, $uibModalInstance){
 
 		$scope.user;
+		$scope.alerts = [];
 
 		$scope.ok = function() {
 
-			$uibModalInstance.close();
 
 			//Posts data
 			$http({
@@ -139,8 +145,12 @@ angular.module("nukernUserController").controller("AddModalUserCtrl", [ '$http',
 			})
 			.then(
 				function(){
+					$scope.alerts.push({type:'success', msg: 'New Edits Saved'});
+					$uibModalInstance.close($scope.alerts);
 				},
 				function(){
+					$scope.alerts.push({type:'danger', msg: 'New User Not Saved'});
+					$uibModalInstance.close($scope.alerts);
 				}
 			);
 
