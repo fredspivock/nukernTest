@@ -5,23 +5,30 @@
 	<link rel="stylesheet" href="css/main.css">
 	<script src="bower_components/angular/angular.js" type="text/javascript"></script>
 	<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js" type="text/javascript"></script>
+	<script src="bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script>
 	<script src="js/app.js" type="text/javascript"></script>
 	<script src="js/userController.js" type="text/javascript"></script>
 </head>
 <body class="container">
-	<div ng-controller="UserCtrl" class="table-wrapper">
-		<table class="table table-responsive table-striped">
-			<tr>
-				<th>ID</th>
-				<th>Client Name</th>
-				<th>Email</th>
-			</tr>
-			<tr ng-repeat="(key, user) in users">
-				<td><a ng-click="userModalClick(key)" class="tableId">{{ key }}</a></td>
-				<td>{{ user.first_name  + " " + user.last_name }}</td>
-				<td>{{ user.email }}</td>
-			</tr>
-		</table>
+	<h3>Clients</h3>
+	<div ng-controller="UserCtrl">
+		<div class="table-wrapper">
+			<table class="table table-responsive table-striped">
+				<tr>
+					<th>ID</th>
+					<th>Client Name</th>
+					<th>Email</th>
+				</tr>
+				<tr ng-repeat="(key, user) in users">
+					<td><a ng-click="userModalClick(key)" class="tableId">{{ key }}</a></td>
+					<td>{{ user.first_name  + " " + user.last_name }}</td>
+					<td>{{ user.email }}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div ng-controller="NewUserCtrl">
+		<button class="btn btn-default" ng-click="newUserModalClick()">Create New User</button>
 	</div>
 </body>
 </html>
