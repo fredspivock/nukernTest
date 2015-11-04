@@ -2,8 +2,8 @@
 	<div class="modal-title">{{user.first_name}} {{user.last_name}}</div>
 </div>
 <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
-<div class="modal-body">
-	<form class="css-form">
+<form class="css-form">
+	<div class="modal-body">
 		<div>
 			<div>First Name:</div><input ng-model="user.first_name" type="text" name="fname" maxlength="50" required>
 		</div>
@@ -13,9 +13,9 @@
 		<div>
 			<div>Email:</div><input ng-model="user.email" type="email" name="email" placeholder="{{ user.email }}">
 		</div>
-	</form>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Save</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-</div>
+	</div>
+	<div class="modal-footer">
+    	<button class="btn btn-primary" ng-click="ok()">Save</button>
+    	<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+	</div>
+</form>

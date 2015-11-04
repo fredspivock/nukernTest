@@ -1,8 +1,8 @@
 <div class="modal-header">
 	<div class="modal-title">New User</div>
 </div>
-<div class="modal-body">
-	<form class="css-form">
+<form class="css-form" name="newUserForm" ng-submit="ok()">
+	<div class= "modal-body">
 		<div>
 			<div>First Name:</div><input ng-model="user.first_name" type="text" name="fname" maxlength="50" required>
 		</div>
@@ -12,9 +12,9 @@
 		<div>
 			<div>Email:</div><input ng-model="user.email" type="email" name="email" required>
 		</div>
-	</form>
-</div>
-<div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">Save</button>
-    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-</div>
+		<div class="modal-footer">
+			<button class="btn btn-primary">Save</button>
+    		<button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+		</div>
+	</div>
+</form>
