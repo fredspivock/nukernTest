@@ -2,15 +2,15 @@
 	<div class="modal-title">New User</div>
 </div>
 <div class="modal-body">
-	<form>
+	<form class="css-form">
 		<div>
-			<div>First Name:</div><input ng-model="user.first_name" type="text" name="fname" placeholder="{{ user.first_name }}">
+			<div>First Name:</div><input ng-model="user.first_name" type="text" name="fname" maxlength="50" required>
 		</div>
 		<div>
-			<div>Last Name:</div><input ng-model="user.last_name" type="text" name="lname" placeholder="{{ user.last_name }}">
+			<div>Last Name:</div><input ng-model="user.last_name" type="text" name="lname" maxlength="60" required>
 		</div>
 		<div>
-			<div>Email:</div><input ng-model="user.email" type="email" name="email" placeholder="{{ user.email }}">
+			<div>Email:</div><input ng-model="user.email" type="email" name="email" required>
 		</div>
 	</form>
 </div>

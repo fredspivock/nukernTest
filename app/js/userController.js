@@ -104,11 +104,11 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 			})
 			.then(
 				function(){
-					$scope.alerts.push({type:'success', msg: 'Edits Saved'});
+					$scope.alerts.push({type:'success', msg: 'Saved'});
 					$uibModalInstance.close($scope.alerts);
 				},
 				function(){
-					$scope.alerts.push({type:'danger', msg: 'Edits Not Saved'});
+					$scope.alerts.push({type:'danger', msg: 'Could not save'});
 					$uibModalInstance.close($scope.alerts);
 				}
 			);
@@ -140,16 +140,16 @@ angular.module("nukernUserController").controller("AddModalUserCtrl", [ '$http',
 			//Posts data
 			$http({
 				method: "POST",
-				url: "http://nukern-test.herokuapp.com/api/clients/",
+				url: "http://nukern-test.herokuapp.com/api/clients",
 				data: $scope.user
 			})
 			.then(
 				function(){
-					$scope.alerts.push({type:'success', msg: 'New Edits Saved'});
+					$scope.alerts.push({type:'success', msg: 'Saved'});
 					$uibModalInstance.close($scope.alerts);
 				},
 				function(){
-					$scope.alerts.push({type:'danger', msg: 'New User Not Saved'});
+					$scope.alerts.push({type:'danger', msg: 'Could not save'});
 					$uibModalInstance.close($scope.alerts);
 				}
 			);
