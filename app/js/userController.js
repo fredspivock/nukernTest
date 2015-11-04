@@ -28,7 +28,7 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 
 		//create Modal to edit single user
 		$scope.userModalClick = function(id) {
-			$scope.id = id;
+			console.log(id);
 			var modalInstance = $uibModal.open({
 
 				templateUrl:"partials/userModal.html",
@@ -37,7 +37,7 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 				resolve: {
 					id: function() {
 
-						return $scope.id;
+						return id;
 					}
 				}
 			});
@@ -73,8 +73,6 @@ angular.module("nukernUserController", ['ui.bootstrap'])
 angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$scope', '$uibModalInstance', 'id',
 	function($http, $scope, $uibModalInstance, id){
 
-		//Save the id to scope
-		$scope.id = id;
 
 		//Alerts
 		$scope.alerts = [];
@@ -82,11 +80,10 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 		//Gets a single client's data or errors out
 		$http({
 			method: 'GET',
-			url: 'clients' + $scope.id + '.json'
+			url: 'http://nukern-test.herokuapp.com/api/clients/' + id
 		})
 		.then(function(data){
 				$scope.user = data.data;
-				console.log($scope.user);
 			},
 			function(){
 				$scope.alerts.push({type:'danger', msg: 'Could Not Connect'});
@@ -99,7 +96,7 @@ angular.module("nukernUserController").controller("ModalUserCtrl", [ '$http', '$
 			//PUTS data
 			$http({
 				method: "PUT",
-				url: "http://nukern-test.herokuapp.com/api/clients/" + $scope.id,
+				url: "http://nukern-test.herokuapp.com/api/clients/" + id,
 				data: $scope.user
 			})
 			.then(
